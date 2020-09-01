@@ -35,8 +35,8 @@ RUN echo "alias python=/usr/local/bin/python3.8" >> ~/.bashrc
 RUN /bin/bash -c "source ~/.bashrc"
 RUN python -V
 
-sudo rm -rf Python-3.8.0.tgz
-sudo rm -rf Python-3.8.0
+RUN rm -rf Python-3.8.0.tgz
+RUN rm -rf Python-3.8.0
 # Python dependencies
 
 RUN python3 --version
