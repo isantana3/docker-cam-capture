@@ -23,20 +23,19 @@ RUN apt-get install -y build-essential cmake pkg-config libjpeg-dev libtiff5-dev
                         gfortran \
                         python3-dev python3-pip python3
 
-RUN apt-get install -y build-essential tk-dev libncurses5-dev libncursesw5-dev libreadline6-dev libdb5.3-dev libgdbm-dev libsqlite3-dev libssl-dev libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev libffi-dev tar wget vim
-RUN wget https://www.python.org/ftp/python/3.8.0/Python-3.8.0.tgz
-RUN tar zxf Python-3.8.0.tgz
-RUN cd Python-3.8.0
-RUN ./configure --enable-optimizations
-RUN make -j 4
-RUN make altinstall
+# Python3.8 install script
+WORKDIR /
+ENV PYTHON_VERSION=3.8.0
+ADD python-installer.sh ./python-installer.sh
+RUN ./python-installer.sh
 
-RUN echo "alias python=/usr/local/bin/python3.8" >> ~/.bashrc
-RUN /bin/bash -c "source ~/.bashrc"
-RUN python -V
+# RUN echo "alias python=/usr/local/bin/python3.8" >> ~/.bashrc
+# RUN /bin/bash -c "source ~/.bashrc"
+# RUN python -V
 
-RUN rm -rf Python-3.8.0.tgz
-RUN rm -rf Python-3.8.0
+# RUN rm -rf Python-3.8.0.tgz
+# RUN rm -rf Python-3.8.0
+
 # Python dependencies
 
 RUN python3 --version
