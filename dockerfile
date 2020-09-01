@@ -3,7 +3,6 @@ FROM raspbian/fpixel
 USER root
 WORKDIR /usr/src/app
 
-ADD app ./app
 
 
 RUN apt-get purge -y libreoffice*
